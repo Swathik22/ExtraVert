@@ -77,13 +77,16 @@ void plantsByLightNeeds()
 
     List<Plant> plantsForMaxLightRequired=new List<Plant>();
 
-    foreach(Plant eachPlant in plants)
-    {
-        if(eachPlant.LightNeeds<=lightRequired)
-        {
-            plantsForMaxLightRequired.Add(eachPlant);
-        }
-    }
+    // foreach(Plant eachPlant in plants)
+    // {
+    //     if(eachPlant.LightNeeds<=lightRequired)
+    //     {
+    //         plantsForMaxLightRequired.Add(eachPlant);
+    //     }
+    // }
+
+    plantsForMaxLightRequired=plants.Where(eachplant=>eachplant.LightNeeds<=lightRequired).ToList();
+  
 
     if(plantsForMaxLightRequired.Count>0)
     {
@@ -175,14 +178,16 @@ void displayAllPlants()
 void percentageOfPlantsAdopted()
 {
      double adoptedAverage=0.00;
-    double sum=0.00;
-    for(int i=0;i<plants.Count;i++)
-    {
-        if(plants[i].Sold)
-        {
-            sum++;
-        }
-    }
+    double sum=plants.Count(p=>p.Sold);
+    // for(int i=0;i<plants.Count;i++)
+    // {
+    //     if(plants[i].Sold)
+    //     {
+    //         sum++;
+    //     }
+    // }
+
+
     adoptedAverage=sum/plants.Count;
     Console.WriteLine($"The percentage of plants adopted is ${adoptedAverage}");
 }
